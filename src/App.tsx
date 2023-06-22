@@ -1,13 +1,15 @@
 import React from 'react';
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import './App.css';
+import {StreamerTable} from "./components/Streamer/StreamerTable";
 
 function App() {
 
   return (
-    <div className="App">
-
-    </div>
+    <Routes>
+      <Route path="/" element={<Navigate to="/streamers"/>}/>
+      <Route path="/streamers" element={<StreamerTable/>}></Route>
+    </Routes>
   );
 }
 
