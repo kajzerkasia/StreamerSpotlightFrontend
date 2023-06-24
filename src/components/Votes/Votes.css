@@ -1,0 +1,21 @@
+.div_votes_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.react_icon_like {
+    color: #00806f;
+    font-size: 20px;
+    margin-bottom: 5px;
+    vertical-align: -7px;
+    margin-right: 5px;
+}
+
+.react_icon_dislike {
+    color: #d15a5a;
+    font-size: 20px;
+    vertical-align: -7px;
+    margin-right: 5px;
+}

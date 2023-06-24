@@ -1,9 +1,93 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {StreamerEntity, Status} from 'types';
+import {TbBroadcast} from "react-icons/tb";
+import {IconContext} from "react-icons";
+import {apiUrl} from "../../config/api";
+import './StreamerTable.css';
+import {StreamerForm} from "./StreamerForm";
 
 export const StreamerTable = () => {
+
+    const [streamersList, setStreamersList] = useState<StreamerEntity[]>([]);
+
+    useEffect(() => {
+        const abortController = new AbortController();
+        fetch(`${apiUrl}/api/streamer/streamers`, {
+            method: 'GET',
+            signal: abortController.signal
+        }).then(res => res.json())
+            .then((streamers) => {
+                setStreamersList(streamers)
+            })
+        return () => {
+            try {
+                abortController.abort()
+            } catch {
+            }
+        };
+    }, [])
+
+    const addStreamer = async (values: StreamerEntity) => {
+        const res = await fetch(`${apiUrl}/api/streamer/streamers`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+        })
+        const data = await res.json();
+        setStreamersList(list => [...list, data]);
+    };
+
     return (
-        <div>
-            <p>Streamers</p>
+        <div className="div_streamers_container">
+            <IconContext.Provider value={{className: 'react_icon_logo'}}>
+                <h1 className="main_h1_streamers"><TbBroadcast/>Streamer Spotlight App</h1>
+            </IconContext.Provider>
+            <div className="div_streamers_table_container">
+                <table className="streamers_table">
+                    <thead>
+                    <tr>
+                        <td align="center" colSpan={3}>
+                            <h2 className="h2_streamers"> Top Streamers</h2>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr className="div_streamer_input_group">
+                        <StreamerForm
+                            initialValues={{
+                                name: '',
+                                platform: '',
+                            }}
+                            onSubmit={async (values, reset) => {
+                                if (
+                                    values.name &&
+                                    values.platform
+                                ) {
+                                    await addStreamer(values);
+                                    reset();
+                                }
+                            }}
+                            actionType={Status.Add}
+                        />
+                    </tr>
+                    {streamersList.map((streamer) => (
+                        <tr
+                            key={`${streamer.id}`}
+                        >
+                            <StreamerForm
+                                initialValues={{
+                                    name: streamer.name,
+                                    platform: streamer.platform,
+                                }}
+                                actionType={Status.Save}
+                            />
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
-    );
-};
+    )
+}

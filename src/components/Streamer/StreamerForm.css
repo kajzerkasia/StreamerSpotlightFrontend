@@ -1,0 +1,31 @@
+.input_streamer_name,
+.input_streaming_platform {
+    margin-top: 0.3rem;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    background-color: #E6E6FA;
+}
+.td_streamer_name {
+    width: 42%;
+}
+
+input:focus {
+    outline: transparent;
+}
+
+.button_add_streamer {
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 5px;
+    background-color: #3d63cb;
+    color: #E6E6FA;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
