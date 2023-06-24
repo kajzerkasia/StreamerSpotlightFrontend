@@ -3,6 +3,7 @@ import {StreamerEntity, Status} from 'types';
 import {TbPlus, TbCheck, TbBrandTwitch, TbBrandYoutube, TbBrandTiktok, TbBrandKick} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import './StreamerForm.css';
+import {Dropdown, Option} from "../Dropdown/Dropdown";
 
 export type StreamerFormProps = {
     initialValues: StreamerEntity;
@@ -12,11 +13,12 @@ export type StreamerFormProps = {
 
 export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerFormProps) => {
     const [values, setValues] = useState<StreamerEntity>(() => initialValues);
-    const [open, setOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState<any>(null);
 
-    const handleOpen = () => {
-        setOpen(!open);
-    };
+    const onItemClick = (option: Option) => {
+        setSelectedOption(option);
+        handleChange('platform', option.value);
+    }
 
     const reset: () => void = () => {
         setValues(initialValues);
@@ -28,6 +30,14 @@ export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerForm
             [field]: value
         }));
     };
+
+    const options = [
+        { value: "Twitch", label: "Twitch" },
+        { value: "YouTube", label: "YouTube" },
+        { value: "TikTok", label: "TikTok" },
+        { value: "Kick", label: "Kick" },
+        { value: "Rumble", label: "Rumble" },
+    ]
 
     return (
         <>
@@ -53,6 +63,9 @@ export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerForm
                         Select the platform on which this streamer is broadcasting from the drop-down list.
                     </label>
                     : ''}
+                {actionType === Status.Add ?
+                    <Dropdown placeholder="Select..." options={options} onItemClick={onItemClick} />
+                    : ''}
                 {/*<input*/}
                 {/*    placeholder="What is the streaming platform of this streamer?"*/}
                 {/*    className="input_streaming_platform"*/}
@@ -62,41 +75,42 @@ export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerForm
                 {/*    value={values.platform}*/}
                 {/*    onChange={(event) => handleChange('platform', event.target.value)}*/}
                 {/*/>*/}
-                <div className="dropdown">
-                    <button onClick={handleOpen}>Select</button>
-                    {open ? (
-                        <ul className="menu">
-                            <li className="menu-item">
-                                <IconContext.Provider value={{className: 'react-icons'}}>
-                                    <button><TbBrandTwitch/> Twitch</button>
-                                </IconContext.Provider>
-                            </li>
-                            <li className="menu-item">
-                                <IconContext.Provider value={{className: 'react-icons'}}>
-                                    <button><TbBrandYoutube/> YouTube</button>
-                                </IconContext.Provider>
-                            </li>
-                            <li className="menu-item">
-                                <IconContext.Provider value={{className: 'react-icons'}}>
-                                    <button><TbBrandTiktok/> TikTok</button>
-                                </IconContext.Provider>
-                            </li>
-                            <li className="menu-item">
-                                <IconContext.Provider value={{className: 'react-icons'}}>
-                                    <button><TbBrandKick/> Kick</button>
-                                </IconContext.Provider>
-                            </li>
-                            <li className="menu-item">
-                                <button><img className="rumble" src="../../assets/rumble_logo.png" alt=""></img>Rumble</button>
-                            </li>
-                        </ul>
-                    ) : null}
-                </div>
-                <label htmlFor="platform"></label>
+                {/*{actionType === Status.Add ?*/}
+                {/*<div className="dropdown">*/}
+                {/*    <button onClick={handleOpen} className="dropdown_button">Choose platform</button>*/}
+                {/*    {open ? (*/}
+                {/*        <ul className="menu">*/}
+                {/*            <li className="menu-item">*/}
+                {/*                <IconContext.Provider value={{className: 'react-icons'}}>*/}
+                {/*                    <button><TbBrandTwitch/> Twitch</button>*/}
+                {/*                </IconContext.Provider>*/}
+                {/*            </li>*/}
+                {/*            <li className="menu-item">*/}
+                {/*                <IconContext.Provider value={{className: 'react-icons'}}>*/}
+                {/*                    <button><TbBrandYoutube/> YouTube</button>*/}
+                {/*                </IconContext.Provider>*/}
+                {/*            </li>*/}
+                {/*            <li className="menu-item">*/}
+                {/*                <IconContext.Provider value={{className: 'react-icons'}}>*/}
+                {/*                    <button><TbBrandTiktok/> TikTok</button>*/}
+                {/*                </IconContext.Provider>*/}
+                {/*            </li>*/}
+                {/*            <li className="menu-item">*/}
+                {/*                <IconContext.Provider value={{className: 'react-icons'}}>*/}
+                {/*                    <button><TbBrandKick/> Kick</button>*/}
+                {/*                </IconContext.Provider>*/}
+                {/*            </li>*/}
+                {/*            <li className="menu-item">*/}
+                {/*                <button><img className="rumble" src="../../assets/rumble_logo.png" alt=""></img>Rumble</button>*/}
+                {/*            </li>*/}
+                {/*        </ul>*/}
+                {/*    ) : null}*/}
+                {/*</div>*/}
+                {/*    // : ''}*/}
             </td>
             <td>
                 <IconContext.Provider value={{className: 'react-icons'}}>
-                    <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus/> : <TbCheck/>}</button>
+                    <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <p className="dropdown_button">Add streamer to the list</p> : <TbCheck/>}</button>
                 </IconContext.Provider>
             </td>
         </>
