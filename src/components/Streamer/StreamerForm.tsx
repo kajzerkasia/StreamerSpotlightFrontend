@@ -4,6 +4,7 @@ import './StreamerForm.css';
 import {Dropdown, Option} from "../Dropdown/Dropdown";
 import {Votes} from "../Votes/Votes";
 import {getPlatformIcon} from "../../utils/getPlatformIcon";
+import {options} from "../../utils/options";
 
 export type StreamerFormProps = {
     initialValues: StreamerEntity;
@@ -30,14 +31,6 @@ export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerForm
             [field]: value
         }));
     };
-
-    const options = [
-        {value: "Twitch", label: "Twitch"},
-        {value: "YouTube", label: "YouTube"},
-        {value: "TikTok", label: "TikTok"},
-        {value: "Kick", label: "Kick"},
-        {value: "Rumble", label: "Rumble"},
-    ]
 
     return (
         <>
