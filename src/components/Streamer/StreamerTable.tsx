@@ -155,11 +155,6 @@ export const StreamerTable = () => {
                                 }}
                                 actionType={Status.Save}
                             />
-                            <td>
-                                <IconContext.Provider value={{className: 'react-icons'}}>
-                                    <button onClick={() => handleDeleteStreamer(streamer.id)}><TbX/></button>
-                                </IconContext.Provider>
-                            </td>
                         </tr>
                     ))}
                     </tbody>

@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./Dropdown.css";
 import {Icon} from "../Icon/Icon";
+import {getPlatformIcon} from "../../utils/getPlatformIcon";
 
 export interface Option {
     label: string;
@@ -33,7 +34,11 @@ export const Dropdown = ({ placeholder, options, onItemClick }: DropdownProps) =
 
     const getDisplay = () => {
         if (selectedValue) {
-            return selectedValue.label;
+            return (
+                <>
+                    {getPlatformIcon(selectedValue.value)} {selectedValue.label}
+                </>
+            );
         }
         return placeholder;
     };
@@ -67,7 +72,9 @@ export const Dropdown = ({ placeholder, options, onItemClick }: DropdownProps) =
                             key={option.value}
                             className={`dropdown-item ${isSelected(option) ? "selected" : ""}`}
                         >
-                            {option.label}
+                            <>
+                                {getPlatformIcon(option.value)} {option.label}
+                            </>
                         </div>
                     ))}
                 </div>
