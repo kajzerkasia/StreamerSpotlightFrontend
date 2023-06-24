@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StreamerEntity, Status} from 'types';
-import {TbQuestionMark, TbX, TbHeartbeat, TbDotsVertical} from "react-icons/tb";
+import {TbX, TbBroadcast} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {Link} from "react-router-dom";
 import {apiUrl} from "../../config/api";
@@ -99,7 +99,7 @@ export const StreamerTable = () => {
     return (
         <div className="div_streamers_container">
             <IconContext.Provider value={{className: 'react_icon_logo'}}>
-                <h1 className="main-h1"><TbHeartbeat/>Streamer Spotlight App</h1>
+                <h1 className="main_h1_streamers"><TbBroadcast/>Streamer Spotlight App</h1>
             </IconContext.Provider>
 
             <div className="div_streamers_table_container">
@@ -108,18 +108,13 @@ export const StreamerTable = () => {
                     <thead>
                     <tr>
                         <td className="training-plans" align="center" colSpan={4}>
-                            <h1 className="h1_streamers"> Top Streamers</h1>
+                            <h2 className="h2_streamers"> Top Streamers</h2>
                         </td>
                     </tr>
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <td className="question-td">
-                            <IconContext.Provider value={{className: 'react-icons'}}>
-                                <Link to="/instruction"><TbQuestionMark/></Link>
-                            </IconContext.Provider>
-                        </td>
+                    <tr className="div_streamer_input_group">
                         <StreamerForm
                             initialValues={{
                                 name: '',
@@ -143,12 +138,9 @@ export const StreamerTable = () => {
                     </tr>
 
                     {streamersList.map((streamer) => (
-                        <tr key={`${streamer.id}`}>
-                            <td>
-                                <IconContext.Provider value={{className: 'react-icons'}}>
-                                    <button onClick={() => handleDeleteStreamer(streamer.id)}><TbX/></button>
-                                </IconContext.Provider>
-                            </td>
+                        <tr
+                            key={`${streamer.id}`}
+                        >
                             <StreamerForm
                                 initialValues={streamer}
                                 onSubmit={async (values) => {
@@ -163,6 +155,11 @@ export const StreamerTable = () => {
                                 }}
                                 actionType={Status.Save}
                             />
+                            <td>
+                                <IconContext.Provider value={{className: 'react-icons'}}>
+                                    <button onClick={() => handleDeleteStreamer(streamer.id)}><TbX/></button>
+                                </IconContext.Provider>
+                            </td>
                         </tr>
                     ))}
                     </tbody>
