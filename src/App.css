@@ -18,6 +18,7 @@ html {
 }
 
 td, th {
-  padding: 10px;
+  padding: 10px 20px;
   border: 1px solid #d495e2;
+  border-radius: 5px;
 }

@@ -1,5 +1,7 @@
 .input_streamer_name,
-.input_streaming_platform {
+.input_streaming_platform,
+.textarea_streamer_description {
+    font-family: 'Montserrat', sans-serif;
     margin-top: 0.3rem;
     padding: 5px 10px;
     font-size: 16px;
@@ -8,6 +10,14 @@
     width: 100%;
     background-color: #E6E6FA;
 }
+
+.textarea_streamer_description {
+
+    min-height: 100px;
+    width: 100%;
+    max-width: 350px;
+}
+
 .td_streamer_name {
     width: 42%;
 }
@@ -16,7 +26,8 @@ input:focus {
     outline: transparent;
 }
 
-.button_add_streamer {
+.button_add_streamer,
+.button_streamer_details {
     font-size: 16px;
     border: none;
     border-radius: 5px;
@@ -28,4 +39,29 @@ input:focus {
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+}
+
+.button_streamer_details {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.white-logo {
+    filter: brightness(0) invert(1);
+}
+
+.td_streamer_name,
+.td_streaming_platform,
+.td_streamer_description {
+    width: 30%;
+}
+
+.streamer-form-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center-text {
+    text-align: center;
 }
