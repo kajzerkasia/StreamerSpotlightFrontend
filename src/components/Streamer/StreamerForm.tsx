@@ -4,14 +4,17 @@ import './StreamerForm.css';
 import {Dropdown, Option} from "../Dropdown/Dropdown";
 import {getPlatformIcon} from "../../utils/getPlatformIcon";
 import {options} from "../../utils/options";
+import {Link} from "react-router-dom";
 
 export type StreamerFormProps = {
     initialValues: StreamerEntity;
     onSubmit?: (values: StreamerEntity, reset: () => void) => void | Promise<void>;
     actionType: Status;
+    votes?: React.ReactNode;
+    streamerId?: string;
 };
 
-export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerFormProps) => {
+export const StreamerForm = ({initialValues, onSubmit, actionType, votes, streamerId}: StreamerFormProps) => {
     const [values, setValues] = useState<StreamerEntity>(() => initialValues);
     const [selectedOption, setSelectedOption] = useState<any>(null);
 
@@ -84,7 +87,8 @@ export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerForm
                         value={values.description}
                         onChange={(event) => handleChange('description', event.target.value)}
                     />
-                    : <button className="button_streamer_details">Details</button>}
+                    : <Link className="button_streamer_details" to={`/streamer/${streamerId}`}>Details</Link>
+                }
             </td>
             <td colSpan={1}>
                 {actionType === Status.Add ? (
@@ -92,11 +96,9 @@ export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerForm
                     <button className="button_add_streamer" type='button' onClick={() => onSubmit ? onSubmit(values, reset) : ''}>Add streamer
                     </button>
                 ) : (
-                    ""
+                    <div>{votes}</div>
                 )}
             </td>
-
-
         </>
     );
 };

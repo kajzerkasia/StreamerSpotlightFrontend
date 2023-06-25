@@ -103,10 +103,9 @@ export const StreamerTable = () => {
                                     platform: streamer.platform,
                                 }}
                                 actionType={Status.Save}
+                                streamerId={streamer.id}
+                                votes={<Votes streamerId={streamer.id} />}
                             />
-                            <td>
-                                <Votes streamerId={streamer.id} />
-                            </td>
                         </tr>
                     ))}
                     </tbody>
