@@ -4,15 +4,23 @@ import { BiSolidLike, BiSolidDislike } from "react-icons/bi";
 import "./Votes.css";
 
 export const Votes = () => {
-    const [likes, setLikes] = useState(0);
-    const [dislikes, setDislikes] = useState(0);
+    const [likes, setLikes] = useState(0); // Początkowa wartość liczby głosów za
+    const [dislikes, setDislikes] = useState(0); // Początkowa wartość liczby głosów przeciw
+    const [hasVotedFor, setHasVotedFor] = useState(false); // Czy użytkownik oddał już głos za
+    const [hasVotedAgainst, setHasVotedAgainst] = useState(false); // Czy użytkownik oddał już głos przeciw
 
     const handleLikeClick = () => {
-        setLikes(likes + 1);
+        if (!hasVotedFor && !hasVotedAgainst) {
+            setLikes(likes + 1);
+            setHasVotedFor(true);
+        }
     };
 
     const handleDislikeClick = () => {
-        setDislikes(dislikes + 1);
+        if (!hasVotedFor && !hasVotedAgainst) {
+            setDislikes(dislikes + 1);
+            setHasVotedAgainst(true);
+        }
     };
 
     return (
