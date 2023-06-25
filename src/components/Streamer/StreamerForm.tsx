@@ -34,7 +34,7 @@ export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerForm
 
     return (
         <>
-            <td className="td_streamer_name" colSpan={1}>
+            <td className={`td_streamer_name ${actionType !== Status.Add ? 'center-text' : ''}`} colSpan={1}>
                 {actionType === Status.Add ?
                     <label htmlFor="">
                         Enter the streamer's name on the specified streaming platform
@@ -52,7 +52,7 @@ export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerForm
                     />
                     : <p>{values.name}</p>}
             </td>
-            <td className="td_streaming_platform" colSpan={1}>
+            <td className={`td_streaming_platform ${actionType !== Status.Add ? 'center-text' : ''}`} colSpan={1}>
                 {actionType === Status.Add ?
                     <label htmlFor="">
                         Select the platform this streamer is broadcasting on
@@ -64,6 +64,23 @@ export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerForm
                         <div>
                             {getPlatformIcon(values.platform)} {values.platform}
                         </div>)}
+            </td>
+            <td className="td_streamer_description" colSpan={1}>
+                {actionType === Status.Add ?
+                    <label htmlFor="">
+                        Please provide some information about this streamer
+                    </label>
+                    : ''}
+                {actionType === Status.Add ?
+                    <textarea
+                        placeholder="Streamer description"
+                        className="textarea_streamer_description"
+                        name="description"
+                        required
+                        value={values.description}
+                        onChange={(event) => handleChange('description', event.target.value)}
+                    />
+                    : <button className="button_streamer_details">Details</button>}
             </td>
             <td colSpan={1}>
                 {actionType === Status.Add ? (
