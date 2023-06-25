@@ -2,17 +2,19 @@ import React, {useState} from 'react';
 import {StreamerEntity, Status} from 'types';
 import './StreamerForm.css';
 import {Dropdown, Option} from "../Dropdown/Dropdown";
-import {Votes} from "../Votes/Votes";
 import {getPlatformIcon} from "../../utils/getPlatformIcon";
 import {options} from "../../utils/options";
+import {Link} from "react-router-dom";
 
 export type StreamerFormProps = {
     initialValues: StreamerEntity;
     onSubmit?: (values: StreamerEntity, reset: () => void) => void | Promise<void>;
     actionType: Status;
+    votes?: React.ReactNode;
+    streamerId?: string;
 };
 
-export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerFormProps) => {
+export const StreamerForm = ({initialValues, onSubmit, actionType, votes, streamerId}: StreamerFormProps) => {
     const [values, setValues] = useState<StreamerEntity>(() => initialValues);
     const [selectedOption, setSelectedOption] = useState<any>(null);
 
@@ -35,8 +37,9 @@ export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerForm
     return (
         <>
             <td className={`td_streamer_name ${actionType !== Status.Add ? 'center-text' : ''}`} colSpan={1}>
+                {actionType === Status.Add ? <h2 className="center-text">Name</h2> : ''}
                 {actionType === Status.Add ?
-                    <label htmlFor="">
+                    <label htmlFor="name">
                         Enter the streamer's name on the specified streaming platform
                     </label>
                     : ''}
@@ -45,14 +48,16 @@ export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerForm
                         placeholder="What is the name of the streamer?"
                         className="input_streamer_name"
                         type="text"
+                        id="name"
                         name="name"
                         required
                         value={values.name}
                         onChange={(event) => handleChange('name', event.target.value)}
                     />
-                    : <p>{values.name}</p>}
+                    : <h2 className="h2_streamer_name">{values.name}</h2>}
             </td>
             <td className={`td_streaming_platform ${actionType !== Status.Add ? 'center-text' : ''}`} colSpan={1}>
+                {actionType === Status.Add ? <h2 className="center-text">Platform</h2> : ''}
                 {actionType === Status.Add ?
                     <label htmlFor="">
                         Select the platform this streamer is broadcasting on
@@ -66,8 +71,9 @@ export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerForm
                         </div>)}
             </td>
             <td className="td_streamer_description" colSpan={1}>
+                {actionType === Status.Add ? <h2 className="center-text">Description</h2> : ''}
                 {actionType === Status.Add ?
-                    <label htmlFor="">
+                    <label htmlFor="description">
                         Please provide some information about this streamer
                     </label>
                     : ''}
@@ -76,11 +82,13 @@ export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerForm
                         placeholder="Streamer description"
                         className="textarea_streamer_description"
                         name="description"
+                        id="description"
                         required
                         value={values.description}
                         onChange={(event) => handleChange('description', event.target.value)}
                     />
-                    : <button className="button_streamer_details">Details</button>}
+                    : <Link className="button_streamer_details" to={`/streamer/${streamerId}`}>Details</Link>
+                }
             </td>
             <td colSpan={1}>
                 {actionType === Status.Add ? (
@@ -88,11 +96,9 @@ export const StreamerForm = ({initialValues, onSubmit, actionType}: StreamerForm
                     <button className="button_add_streamer" type='button' onClick={() => onSubmit ? onSubmit(values, reset) : ''}>Add streamer
                     </button>
                 ) : (
-                    <Votes/>
+                    <div>{votes}</div>
                 )}
             </td>
-
-
         </>
     );
 };
