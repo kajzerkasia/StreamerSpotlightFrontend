@@ -12,14 +12,9 @@
 }
 
 .textarea_streamer_description {
-
     min-height: 100px;
     width: 100%;
     max-width: 350px;
-}
-
-.td_streamer_name {
-    width: 42%;
 }
 
 input:focus {
@@ -64,4 +59,8 @@ input:focus {
 
 .center-text {
     text-align: center;
+}
+
+.h2_streamer_name {
+    font-size: 18px;
 }
