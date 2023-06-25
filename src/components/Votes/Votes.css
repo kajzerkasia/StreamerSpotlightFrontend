@@ -19,3 +19,8 @@
     vertical-align: -7px;
     margin-right: 5px;
 }
+
+.react_icon_like,
+.react_icon_dislike {
+    cursor: pointer;
+}
