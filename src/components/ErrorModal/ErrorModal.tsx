@@ -23,6 +23,7 @@ export const ErrorModal = ({isOpen, onRequestClose, onConfirm, onCancel, text}: 
             className="error_modal"
             contentLabel="Error Modal"
             closeTimeoutMS={1200}
+            style={{overlay: {background: '#292a2bbf'}}}
         >
             <h2>{text}</h2>
             <IconContext.Provider value={{className: 'icon-modal'}}>
@@ -30,7 +31,6 @@ export const ErrorModal = ({isOpen, onRequestClose, onConfirm, onCancel, text}: 
             </IconContext.Provider>
             <div className="modal_button">
                 <Button onClick={onConfirm}>OK</Button>
-                <button className="btn-confirm" onClick={onConfirm}>OK</button>
             </div>
         </Modal>
     );
