@@ -5,6 +5,7 @@ import {Dropdown, Option} from "../Dropdown/Dropdown";
 import {getPlatformIcon} from "../../utils/getPlatformIcon";
 import {options} from "../../utils/options";
 import {Link} from "react-router-dom";
+import {Button} from "../Button/Button";
 
 export type StreamerFormProps = {
     initialValues: StreamerEntity;
@@ -87,14 +88,12 @@ export const StreamerForm = ({initialValues, onSubmit, actionType, votes, stream
                         value={values.description}
                         onChange={(event) => handleChange('description', event.target.value)}
                     />
-                    : <Link className="button_streamer_details" to={`/streamer/${streamerId}`}>Details</Link>
+                    : <Link to={`/streamer/${streamerId}`}><Button>Details</Button></Link>
                 }
             </td>
             <td colSpan={1}>
                 {actionType === Status.Add ? (
-
-                    <button className="button_add_streamer" type='button' onClick={() => onSubmit ? onSubmit(values, reset) : ''}>Add streamer
-                    </button>
+                    <Button className="button_add_streamer" onClick={() => onSubmit ? onSubmit(values, reset) : ''}>Add streamer</Button>
                 ) : (
                     <div>{votes}</div>
                 )}

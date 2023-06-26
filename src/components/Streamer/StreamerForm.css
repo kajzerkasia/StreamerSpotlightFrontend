@@ -13,32 +13,15 @@
 
 .textarea_streamer_description {
     min-height: 100px;
+    max-height: 100px;
     width: 100%;
     max-width: 350px;
+    min-width: 350px;
+    resize: none;
 }
 
 input:focus {
     outline: transparent;
-}
-
-.button_add_streamer,
-.button_streamer_details {
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 5px;
-    background-color: #3d63cb;
-    color: #E6E6FA;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-}
-
-.button_streamer_details {
-    width: 60%;
-    margin: 0 auto;
 }
 
 .white-logo {
@@ -67,4 +50,8 @@ input:focus {
 
 a {
     text-decoration: none;
+}
+
+.td_streamer_description button {
+    width: 40%;
 }
