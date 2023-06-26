@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import {TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import './ErrorModal.css'
+import {Button} from "../Button/Button";
 
 Modal.setAppElement('#root');
 
@@ -28,6 +29,7 @@ export const ErrorModal = ({isOpen, onRequestClose, onConfirm, onCancel, text}: 
                 <TbAlertTriangle/>
             </IconContext.Provider>
             <div className="modal_button">
+                <Button onClick={onConfirm}>OK</Button>
                 <button className="btn-confirm" onClick={onConfirm}>OK</button>
             </div>
         </Modal>
