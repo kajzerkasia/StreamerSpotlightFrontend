@@ -51,3 +51,7 @@ input:focus {
 a {
     text-decoration: none;
 }
+
+.td_streamer_description button {
+    width: 40%;
+}
