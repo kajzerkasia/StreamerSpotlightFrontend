@@ -6,6 +6,7 @@ import {apiUrl} from "../../config/api";
 import './StreamerTable.css';
 import {StreamerForm} from "./StreamerForm";
 import {Votes} from "../Votes/Votes";
+import {ErrorModal} from "../ErrorModal/ErrorModal";
 
 // GiPodiumWinner
 // GiPodiumSecond
@@ -14,23 +15,30 @@ import {Votes} from "../Votes/Votes";
 export const StreamerTable = () => {
 
     const [streamersList, setStreamersList] = useState<StreamerEntity[]>([]);
+    const [errorModalIsOpen, setErrorModalIsOpen] = useState<boolean>(false);
+
+    const text = 'A streamer with that name already exists! Please enter a different streamer name.';
 
     useEffect(() => {
-        const abortController = new AbortController();
+        // const abortController = new AbortController();
         fetch(`${apiUrl}/api/streamer/streamers`, {
             method: 'GET',
-            signal: abortController.signal
+            // signal: abortController.signal
         }).then(res => res.json())
             .then((streamers) => {
                 setStreamersList(streamers)
             })
-        return () => {
-            try {
-                abortController.abort()
-            } catch {
-            }
-        };
+        // return () => {
+        //     try {
+        //         abortController.abort()
+        //     } catch {
+        //     }
+        // };
     }, [])
+
+    const closeModal = () => {
+        setErrorModalIsOpen(false);
+    };
 
     const addStreamer = async (values: StreamerEntity) => {
         const res = await fetch(`${apiUrl}/api/streamer/streamers`, {
@@ -88,6 +96,8 @@ export const StreamerTable = () => {
                                 ) {
                                     await addStreamer(values);
                                     reset();
+                                } else {
+                                    setErrorModalIsOpen(true);
                                 }
                             }}
                             actionType={Status.Add}
@@ -110,6 +120,13 @@ export const StreamerTable = () => {
                     ))}
                     </tbody>
                 </table>
+                <ErrorModal
+                    isOpen={errorModalIsOpen}
+                    onRequestClose={closeModal}
+                    onConfirm={closeModal}
+                    onCancel={closeModal}
+                    text={text}
+                />
             </div>
         </div>
     )
