@@ -3,6 +3,7 @@ import { StreamerEntity } from 'types';
 import { apiUrl } from "../../config/api";
 import './StreamerRecord.css';
 import {Link, useParams} from "react-router-dom";
+import {Button} from "../Button/Button";
 
 export const StreamerRecord = () => {
     const [streamer, setStreamer] = useState<StreamerEntity | null>(null);
@@ -33,7 +34,7 @@ export const StreamerRecord = () => {
     }
 
     return (
-        <div>
+        <div className="div_streamer_record">
         <div className="streamer_record_container">
             <table className="one_streamer_table">
                 <thead>
@@ -47,7 +48,7 @@ export const StreamerRecord = () => {
                 <tbody>
                 <tr>
                     <td>
-                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/asmongold-profile_image-f7ddcbd0332f5d28-300x300.png" alt="Streamer Image" />
+                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/asmongold-profile_image-f7ddcbd0332f5d28-300x300.png" alt="Streamer" />
                     </td>
                     <td>{streamer.name}</td>
                     <td>{streamer.description}</td>
@@ -56,7 +57,7 @@ export const StreamerRecord = () => {
                 </tbody>
             </table>
         </div>
-            <Link to="/streamers">Go back to the streamers list</Link>
+            <Button><Link to="/streamers">Go back to the streamers list</Link></Button>
         </div>
     );
 };

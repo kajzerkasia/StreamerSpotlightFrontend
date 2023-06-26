@@ -17,7 +17,7 @@ export const StreamerTable = () => {
     const [streamersList, setStreamersList] = useState<StreamerEntity[]>([]);
     const [errorModalIsOpen, setErrorModalIsOpen] = useState<boolean>(false);
 
-    const text = 'A streamer with that name already exists! Please enter a different streamer name.';
+    const text = 'You must complete all fields to add a new streamer. Note that the name cannot be the same as an existing one in the list.';
 
     useEffect(() => {
         // const abortController = new AbortController();
@@ -88,11 +88,13 @@ export const StreamerTable = () => {
                             initialValues={{
                                 name: '',
                                 platform: '',
+                                description: '',
                             }}
                             onSubmit={async (values, reset) => {
                                 if (
                                     values.name &&
-                                    values.platform
+                                    values.platform &&
+                                    values.description
                                 ) {
                                     await addStreamer(values);
                                     reset();
@@ -111,6 +113,7 @@ export const StreamerTable = () => {
                                 initialValues={{
                                     name: streamer.name,
                                     platform: streamer.platform,
+                                    description: streamer.description,
                                 }}
                                 actionType={Status.Save}
                                 streamerId={streamer.id}

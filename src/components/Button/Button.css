@@ -1,0 +1,25 @@
+.button {
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 5px;
+    color: #E6E6FA;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+.disabled {
+    background-color: gray;
+}
+
+.active {
+    background-color: #3d63cb;
+}
