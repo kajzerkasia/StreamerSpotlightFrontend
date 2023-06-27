@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Dropdown.css";
-import {Icon} from "../Icon/Icon";
+import {ArrowDownIcon} from "../ArrowDownIcon/ArrowDownIcon";
 import {getPlatformIcon} from "../../utils/getPlatformIcon";
 
 export interface Option {
@@ -51,34 +51,34 @@ export const Dropdown = ({ placeholder, options, onItemClick }: DropdownProps) =
     };
 
     return (
-        <div className="dropdown-container">
+        <div className={`dropdown-container ${showMenu ? "show-menu" : ""}`}>
             <div onClick={handleInputClick} className="dropdown-input">
-                <div className="dropdown-selected-value">{getDisplay()}</div>
+                <div className={`dropdown-selected-value ${!selectedValue ? "placeholder" : ""}`}>
+                    {getDisplay()}
+                </div>
                 <div className="dropdown-tools">
                     <div className="dropdown-tool">
-                        <Icon />
+                        <ArrowDownIcon />
                     </div>
                 </div>
             </div>
-            {showMenu && (
-                <div className="dropdown-menu" onClick={(e) => e.stopPropagation()}>
-                    {options.map((option) => (
-                        <div
-                            onClick={() => {
-                                onItemClick(option);
-                                setSelectedValue(option);
-                                setShowMenu(false);
-                            }}
-                            key={option.value}
-                            className={`dropdown-item ${isSelected(option) ? "selected" : ""}`}
-                        >
-                            <>
-                                {getPlatformIcon(option.value)} {option.label}
-                            </>
-                        </div>
-                    ))}
-                </div>
-            )}
+            <div className={`dropdown-menu ${showMenu ? "show" : ""}`} onClick={(e) => e.stopPropagation()}>
+                {options.map((option) => (
+                    <div
+                        onClick={() => {
+                            onItemClick(option);
+                            setSelectedValue(option);
+                            setShowMenu(false);
+                        }}
+                        key={option.value}
+                        className={`dropdown-item ${isSelected(option) ? "selected" : ""}`}
+                    >
+                        <>
+                            {getPlatformIcon(option.value)} {option.label}
+                        </>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

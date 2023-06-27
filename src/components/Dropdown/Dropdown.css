@@ -1,9 +1,10 @@
 .dropdown-container {
     text-align: left;
-    border: 1px solid #d495e2;
+    border: 1px solid #E6E6FA;
     position: relative;
-    border-radius: 5px;
-    margin-top: 0.3rem;
+    border-radius: 4px;
+    margin: 0.3rem auto;
+    width: 40%;
 }
 
 .dropdown-input {
@@ -16,13 +17,17 @@
 
 .dropdown-menu {
     position: absolute;
-    transform: translateY(4px);
-    width: 50%;
-    border: 1px solid #ccc;
+    width: 100%;
     border-radius: 5px;
-    max-height: 150px;
+    max-height: 0;
     background-color: #E6E6FA;
     color: black;
+    transition: max-height 0.3s ease;
+    overflow: hidden;
+}
+
+.dropdown-menu.show {
+    max-height: 150px;
 }
 
 .dropdown-item {
@@ -36,5 +41,9 @@
 
 .dropdown-item.selected {
     background-color: #3d63cb;
-    color: #fff;
+    color: #E6E6FA;
+}
+
+.dropdown-selected-value.placeholder {
+    color: #999999;
 }
