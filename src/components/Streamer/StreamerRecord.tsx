@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { StreamerEntity } from 'types';
 import { apiUrl } from "../../config/api";
 import './StreamerRecord.css';
-import {Link, useParams} from "react-router-dom";
-import {Button} from "../Button/Button";
+import { Link, useParams } from "react-router-dom";
+import { Button } from "../Button/Button";
 
 export const StreamerRecord = () => {
     const [streamer, setStreamer] = useState<StreamerEntity | null>(null);
@@ -35,29 +35,33 @@ export const StreamerRecord = () => {
 
     return (
         <div className="div_streamer_record">
-        <div className="streamer_record_container">
-            <table className="one_streamer_table">
-                <thead>
-                <tr>
-                    <th>Streamer Image</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Platform</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/asmongold-profile_image-f7ddcbd0332f5d28-300x300.png" alt="Streamer" />
-                    </td>
-                    <td>{streamer.name}</td>
-                    <td>{streamer.description}</td>
-                    <td>{streamer.platform}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-            <Button><Link to="/streamers">Go back to the streamers list</Link></Button>
+            <div className="streamer_record_container">
+                <div className="streamer_info">
+                    <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/asmongold-profile_image-f7ddcbd0332f5d28-300x300.png" alt="Streamer" />
+                    <div className="description">
+                        {streamer.description}
+                    </div>
+                </div>
+                <div className="streamer_details">
+                    <table className="one_streamer_table">
+                        <tbody>
+                        <tr>
+                            <th>Name:</th>
+                            <td>{streamer.name}</td>
+                        </tr>
+                        <tr>
+                            <th>Platform:</th>
+                            <td>{streamer.platform}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <Button>
+                <Link to="/streamers">Go back to the streamers list</Link>
+            </Button>
         </div>
     );
 };
+
+// Popracować nad rozwijalnym description
