@@ -4,7 +4,7 @@
     font-family: 'Montserrat', sans-serif;
     margin-top: 0.3rem;
     padding: 5px 10px;
-    font-size: 16px;
+    font-size: 14px;
     border: none;
     border-radius: 5px;
     width: 100%;
@@ -12,11 +12,11 @@
 }
 
 .textarea_streamer_description {
-    min-height: 100px;
-    max-height: 100px;
+    min-height: 200px;
+    max-height: 200px;
     width: 100%;
-    max-width: 350px;
-    min-width: 350px;
+    max-width: 500px;
+    min-width: 500px;
     resize: none;
 }
 
@@ -45,7 +45,7 @@ input:focus {
 }
 
 .h2_streamer_name {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 a {
@@ -54,4 +54,12 @@ a {
 
 .td_streamer_description button {
     width: 40%;
+}
+
+.center-text label {
+    font-size: 14px;
+}
+
+.larger_font {
+    font-size: 18px;
 }

@@ -6,6 +6,7 @@ import {getPlatformIcon} from "../../utils/getPlatformIcon";
 import {options} from "../../utils/options";
 import {Link} from "react-router-dom";
 import {Button} from "../Button/Button";
+import {CustomModal} from "../CustomModal/CustomModal";
 
 export type StreamerFormProps = {
     initialValues: StreamerEntity;
@@ -18,6 +19,9 @@ export type StreamerFormProps = {
 export const StreamerForm = ({initialValues, onSubmit, actionType, votes, streamerId}: StreamerFormProps) => {
     const [values, setValues] = useState<StreamerEntity>(() => initialValues);
     const [selectedOption, setSelectedOption] = useState<any>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const text = "Streamer's description";
 
     const onItemClick = (option: Option) => {
         setSelectedOption(option);
@@ -35,10 +39,18 @@ export const StreamerForm = ({initialValues, onSubmit, actionType, votes, stream
         }));
     };
 
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <>
-            <td className={`td_streamer_name ${actionType !== Status.Add ? 'center-text' : ''}`} colSpan={1}>
-                {actionType === Status.Add ? <h2 className="center-text">Name</h2> : ''}
+            <td className="td_streamer_name center-text" colSpan={1}>
+                {actionType === Status.Add ? <h2 className="center-text larger_font">Name</h2> : ''}
                 {actionType === Status.Add ?
                     <label htmlFor="name">
                         Enter the streamer's name on the specified streaming platform
@@ -57,8 +69,8 @@ export const StreamerForm = ({initialValues, onSubmit, actionType, votes, stream
                     />
                     : <h2 className="h2_streamer_name">{values.name}</h2>}
             </td>
-            <td className={`td_streaming_platform ${actionType !== Status.Add ? 'center-text' : ''}`} colSpan={1}>
-                {actionType === Status.Add ? <h2 className="center-text">Platform</h2> : ''}
+            <td className="td_streaming_platform center-text" colSpan={1}>
+                {actionType === Status.Add ? <h2 className="center-text larger_font">Platform</h2> : ''}
                 {actionType === Status.Add ?
                     <label htmlFor="">
                         Select the platform this streamer is broadcasting on
@@ -71,25 +83,42 @@ export const StreamerForm = ({initialValues, onSubmit, actionType, votes, stream
                             {getPlatformIcon(values.platform)} {values.platform}
                         </div>)}
             </td>
-            <td className="td_streamer_description" colSpan={1}>
-                {actionType === Status.Add ? <h2 className="center-text">Description</h2> : ''}
-                {actionType === Status.Add ?
-                    <label htmlFor="description">
-                        Please provide some information about this streamer
-                    </label>
-                    : ''}
-                {actionType === Status.Add ?
-                    <textarea
-                        placeholder="Streamer description"
-                        className="textarea_streamer_description"
-                        name="description"
-                        id="description"
-                        required
-                        value={values.description}
-                        onChange={(event) => handleChange('description', event.target.value)}
-                    />
-                    : <Link to={`/streamer/${streamerId}`}><Button>Details</Button></Link>
-                }
+            <td className="td_streamer_description center-text" colSpan={1}>
+                {actionType === Status.Add ? <h2 className="center-text larger_font">Description</h2> : ''}
+                {actionType === Status.Add ? (
+                    <label htmlFor="description">Please provide some information about this streamer</label>
+                ) : (
+                    ''
+                )}
+                {actionType === Status.Add ? (
+                    <div>
+                        <Button onClick={openModal}>
+                            Add description
+                        </Button>
+                        <CustomModal
+                            isOpen={isModalOpen}
+                            onRequestClose={closeModal}
+                            onConfirm={closeModal}
+                            onCancel={closeModal}
+                            text={text}
+                            content={(
+                                <textarea
+                                    placeholder="Please provide some information about this streamer"
+                                    className="textarea_streamer_description"
+                                    name="description"
+                                    id="description"
+                                    required
+                                    value={values.description}
+                                    onChange={(event) => handleChange('description', event.target.value)}
+                                />
+                            )}
+                        />
+                    </div>
+                ) : (
+                    <Link to={`/streamer/${streamerId}`}>
+                        <Button>Details</Button>
+                    </Link>
+                )}
             </td>
             <td colSpan={1}>
                 {actionType === Status.Add ? (
