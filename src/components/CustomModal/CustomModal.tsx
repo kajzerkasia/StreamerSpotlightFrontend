@@ -5,22 +5,23 @@ import {Button} from "../Button/Button";
 
 Modal.setAppElement('#root');
 
-export type ErrorModalProps = {
+export type CustomModalProps = {
     isOpen: boolean;
     onRequestClose?: () => void | Promise<void>;
     onConfirm?: () => void | Promise<void>;
     onCancel?: () => void | Promise<void>;
     text?: string;
+    confirmationText?: string;
     content?: React.ReactNode;
 };
 
-export const CustomModal = ({isOpen, onRequestClose, onConfirm, onCancel, text, content}: ErrorModalProps) => {
+export const CustomModal = ({isOpen, onRequestClose, onConfirm, onCancel, text, content, confirmationText}: CustomModalProps) => {
     return (
         <Modal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
-            className="error_modal"
-            contentLabel="Error CustomModal"
+            className="custom_modal"
+            contentLabel="Custom modal"
             closeTimeoutMS={1200}
             style={{overlay: {background: '#292a2bbf'}}}
         >
@@ -29,7 +30,7 @@ export const CustomModal = ({isOpen, onRequestClose, onConfirm, onCancel, text, 
                 {content}
             </div>
             <div className="modal_button">
-                <Button onClick={onConfirm}>OK</Button>
+                <Button onClick={onConfirm}>{confirmationText}</Button>
             </div>
         </Modal>
     );
