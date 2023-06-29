@@ -5,12 +5,13 @@ import {Button} from "../Button/Button";
 
 Modal.setAppElement('#root');
 
-export type ErrorModalProps = {
+export type CustomModalProps = {
     isOpen: boolean;
     onRequestClose?: () => void | Promise<void>;
     onConfirm?: () => void | Promise<void>;
     onCancel?: () => void | Promise<void>;
     text?: string;
+    confirmationText?: string;
     content?: React.ReactNode;
     confirmationText?: string;
 };
