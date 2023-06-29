@@ -13,15 +13,16 @@ export type CustomModalProps = {
     text?: string;
     confirmationText?: string;
     content?: React.ReactNode;
+    confirmationText?: string;
 };
 
-export const CustomModal = ({isOpen, onRequestClose, onConfirm, onCancel, text, content, confirmationText}: CustomModalProps) => {
+export const CustomModal = ({isOpen, onRequestClose, onConfirm, onCancel, text, content, confirmationText}: ErrorModalProps) => {
     return (
         <Modal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             className="custom_modal"
-            contentLabel="Custom modal"
+            contentLabel="Custom Modal"
             closeTimeoutMS={1200}
             style={{overlay: {background: '#292a2bbf'}}}
         >
