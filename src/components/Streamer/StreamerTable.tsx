@@ -6,7 +6,7 @@ import {apiUrl} from "../../config/api";
 import './StreamerTable.css';
 import {StreamerForm} from "./StreamerForm";
 import {Votes} from "../Votes/Votes";
-import {ErrorModal} from "../ErrorModal/ErrorModal";
+import {CustomModal} from "../CustomModal/CustomModal";
 
 // GiPodiumWinner
 // GiPodiumSecond
@@ -123,7 +123,7 @@ export const StreamerTable = () => {
                     ))}
                     </tbody>
                 </table>
-                <ErrorModal
+                <CustomModal
                     isOpen={errorModalIsOpen}
                     onRequestClose={closeModal}
                     onConfirm={closeModal}

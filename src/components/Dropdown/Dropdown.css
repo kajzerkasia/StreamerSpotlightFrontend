@@ -5,6 +5,7 @@
     border-radius: 4px;
     margin: 0.3rem auto;
     width: 40%;
+    font-size: 14px;
 }
 
 .dropdown-input {
@@ -20,8 +21,8 @@
     width: 100%;
     border-radius: 5px;
     max-height: 0;
-    background-color: #E6E6FA;
-    color: black;
+    background-color: #3d63cb;
+    color: #E6E6FA;
     transition: max-height 0.3s ease;
     overflow: hidden;
 }
@@ -40,7 +41,7 @@
 }
 
 .dropdown-item.selected {
-    background-color: #3d63cb;
+    background-color: #9fc3f870;
     color: #E6E6FA;
 }
 

@@ -1,5 +1,5 @@
 .button {
-    font-size: 16px;
+    font-size: 14px;
     border: none;
     border-radius: 5px;
     padding: 10px 5px;
@@ -9,7 +9,7 @@
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    margin: 0 auto;
+    margin: 0.3rem auto;
 }
 
 .button:hover {
