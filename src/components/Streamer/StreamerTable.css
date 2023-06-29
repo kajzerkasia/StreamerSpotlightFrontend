@@ -25,9 +25,6 @@
     margin-right: 5px;
 }
 
-/*.div_streamer_input_group {*/
-/*    margin-top: 25px;*/
-/*    width: 100%;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*}*/
+.streamers_table {
+    border-collapse: collapse;
+}

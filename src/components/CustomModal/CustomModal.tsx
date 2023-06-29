@@ -13,10 +13,9 @@ export type CustomModalProps = {
     text?: string;
     confirmationText?: string;
     content?: React.ReactNode;
-    confirmationText?: string;
 };
 
-export const CustomModal = ({isOpen, onRequestClose, onConfirm, onCancel, text, content, confirmationText}: ErrorModalProps) => {
+export const CustomModal = ({isOpen, onRequestClose, onConfirm, onCancel, text, content, confirmationText}: CustomModalProps) => {
     return (
         <Modal
             isOpen={isOpen}

@@ -8,7 +8,8 @@
     padding: 60px 50px;
     width: 30%;
     background-image: linear-gradient(200deg, #3e3e9c, #6b32ac);
-    font-size: 14px;
+    font-size: 16px;
+    border-radius: 5px;
 }
 
 .custom_modal button {
@@ -19,8 +20,8 @@
 }
 
 .custom_modal h2 {
-    font-size: 16px;
     margin-bottom: 5vh;
+    font-size: 16px;
 }
 
 .icon-modal {

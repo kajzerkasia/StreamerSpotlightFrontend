@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { StreamerEntity } from 'types';
 import { apiUrl } from "../../config/api";
 import './StreamerRecord.css';
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Button } from "../Button/Button";
 
 export const StreamerRecord = () => {
     const [streamer, setStreamer] = useState<StreamerEntity | null>(null);
 
-    const { streamerId } = useParams();
+    const {streamerId} = useParams();
 
     useEffect(() => {
         const abortController = new AbortController();
@@ -41,6 +41,7 @@ export const StreamerRecord = () => {
                     <div className="description">
                         {streamer.description}
                     </div>
+                    <div className="streamer_name">{streamer.name}</div>
                 </div>
                 <div className="streamer_details">
                     <table className="one_streamer_table">
@@ -57,11 +58,9 @@ export const StreamerRecord = () => {
                     </table>
                 </div>
             </div>
-            <Button>
-                <Link to="/streamers">Go back to the streamers list</Link>
-            </Button>
+            <div className="button_container">
+                <Button to="/streamers">Go back to the streamers list</Button>
+            </div>
         </div>
     );
 };
-
-// Popracować nad rozwijalnym description
