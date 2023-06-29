@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StreamerEntity, Status} from 'types';
-import {TbBroadcast} from "react-icons/tb";
+import {TbAlertTriangle, TbBroadcast} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {apiUrl} from "../../config/api";
 import './StreamerTable.css';
@@ -18,6 +18,8 @@ export const StreamerTable = () => {
     const [errorModalIsOpen, setErrorModalIsOpen] = useState<boolean>(false);
 
     const text = 'You must complete all fields to add a new streamer. Note that the name cannot be the same as an existing one in the list.';
+
+    const confirmationText = 'OK';
 
     useEffect(() => {
         // const abortController = new AbortController();
@@ -129,6 +131,12 @@ export const StreamerTable = () => {
                     onConfirm={closeModal}
                     onCancel={closeModal}
                     text={text}
+                    content={(
+                        <IconContext.Provider value={{className: 'icon-modal'}}>
+                            <TbAlertTriangle/>
+                        </IconContext.Provider>
+                    )}
+                    confirmationText={confirmationText}
                 />
             </div>
         </div>
