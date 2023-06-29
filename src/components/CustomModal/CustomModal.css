@@ -1,4 +1,4 @@
-.error_modal {
+.custom_modal {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -11,14 +11,14 @@
     font-size: 16px;
 }
 
-.error_modal button {
+.custom_modal button {
     font-family: 'Ubuntu', sans-serif;
     margin-top: 5vh;
     font-size: 16px;
     width: 30%;
 }
 
-.error_modal h2 {
+.custom_modal h2 {
     margin-bottom: 5vh;
 }
 

@@ -12,15 +12,16 @@ export type ErrorModalProps = {
     onCancel?: () => void | Promise<void>;
     text?: string;
     content?: React.ReactNode;
+    confirmationText?: string;
 };
 
-export const CustomModal = ({isOpen, onRequestClose, onConfirm, onCancel, text, content}: ErrorModalProps) => {
+export const CustomModal = ({isOpen, onRequestClose, onConfirm, onCancel, text, content, confirmationText}: ErrorModalProps) => {
     return (
         <Modal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
-            className="error_modal"
-            contentLabel="Error CustomModal"
+            className="custom_modal"
+            contentLabel="Custom Modal"
             closeTimeoutMS={1200}
             style={{overlay: {background: '#292a2bbf'}}}
         >
@@ -29,7 +30,7 @@ export const CustomModal = ({isOpen, onRequestClose, onConfirm, onCancel, text, 
                 {content}
             </div>
             <div className="modal_button">
-                <Button onClick={onConfirm}>OK</Button>
+                <Button onClick={onConfirm}>{confirmationText}</Button>
             </div>
         </Modal>
     );
