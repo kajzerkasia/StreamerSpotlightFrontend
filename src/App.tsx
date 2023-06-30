@@ -1,8 +1,8 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { StreamerTable } from "./components/Streamer/StreamerTable";
+import { StreamerTable } from "./components/StreamerTable/StreamerTable";
 import { Votes } from "./components/Votes/Votes";
-import { StreamerRecord } from "./components/Streamer/StreamerRecord";
+import { StreamerRecord } from "./components/StreamerRecord/StreamerRecord";
 import { ErrorPage } from "./components/ErrorPage/ErrorPage";
 import "./App.css";
 
