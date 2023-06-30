@@ -7,7 +7,7 @@
   font-size: 14px;
   border: none;
   border-radius: 5px;
-  width: 100%;
+  width: 265px;
   background-color: #e6e6fa;
 }
 
@@ -43,7 +43,7 @@ a {
 }
 
 .td_streamer_description button {
-  width: 40%;
+  width: 120px;
 }
 
 .center_text label {

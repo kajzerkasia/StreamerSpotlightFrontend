@@ -29,7 +29,11 @@ export const StreamerRecord = () => {
       });
 
     return () => {
-      abortController.abort();
+      try {
+        abortController.abort();
+      } catch (error) {
+        console.error("An error occurred while aborting the request:", error);
+      }
     };
   }, [streamerId]);
 
@@ -51,8 +55,9 @@ export const StreamerRecord = () => {
       <div className="streamer_record_container">
         <div className="streamer_info">
           <img
-            src="https://static-cdn.jtvnw.net/jtv_user_pictures/asmongold-profile_image-f7ddcbd0332f5d28-300x300.png"
-            alt="Streamer"
+              className="streamer_img"
+              src={require("../../assets/streamer_img.jpg")}
+              alt="Streamer"
           />
           <div className="description">{streamer.description}</div>
           <div className="streamer_name">{streamer.name}</div>
