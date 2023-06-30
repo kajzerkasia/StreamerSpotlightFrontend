@@ -1,65 +1,55 @@
 .input_streamer_name,
 .input_streaming_platform,
 .textarea_streamer_description {
-    font-family: 'Montserrat', sans-serif;
-    margin-top: 0.3rem;
-    padding: 5px 10px;
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    background-color: #E6E6FA;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 0.3rem;
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  background-color: #e6e6fa;
 }
 
 .textarea_streamer_description {
-    min-height: 200px;
-    max-height: 200px;
-    width: 100%;
-    max-width: 500px;
-    min-width: 500px;
-    resize: none;
+  min-height: 200px;
+  max-height: 200px;
+  width: 100%;
+  max-width: 500px;
+  min-width: 500px;
+  resize: none;
 }
 
 input:focus {
-    outline: transparent;
-}
-
-.white-logo {
-    filter: brightness(0) invert(1);
+  outline: transparent;
 }
 
 .td_streamer_name,
 .td_streaming_platform,
 .td_streamer_description {
-    width: 30%;
+  width: 30%;
 }
 
-.streamer-form-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.center-text {
-    text-align: center;
+.center_text {
+  text-align: center;
 }
 
 .h2_streamer_name {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .td_streamer_description button {
-    width: 40%;
+  width: 40%;
 }
 
-.center-text label {
-    font-size: 14px;
+.center_text label {
+  font-size: 14px;
 }
 
 .larger_font {
-    font-size: 18px;
+  font-size: 18px;
 }
