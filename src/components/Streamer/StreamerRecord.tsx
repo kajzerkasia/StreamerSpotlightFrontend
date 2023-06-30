@@ -29,7 +29,11 @@ export const StreamerRecord = () => {
       });
 
     return () => {
-      abortController.abort();
+      try {
+        abortController.abort();
+      } catch (error) {
+        console.error("An error occurred while aborting the request:", error);
+      }
     };
   }, [streamerId]);
 

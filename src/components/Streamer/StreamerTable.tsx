@@ -26,7 +26,9 @@ export const StreamerTable = () => {
     return () => {
       try {
         abortController.abort();
-      } catch {}
+      } catch (error) {
+        console.error("An error occurred while aborting the request:", error);
+      }
     };
   }, []);
 

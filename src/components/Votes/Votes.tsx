@@ -12,8 +12,10 @@ export const Votes = ({ streamerId }: VoteEntity) => {
   const [hasVotedAgainst, setHasVotedAgainst] = useState(false);
 
   useEffect(() => {
+    const abortController = new AbortController();
     fetch(`${apiUrl}/api/vote/streamers/${streamerId}/vote`, {
       method: "GET",
+      signal: abortController.signal,
     })
       .then((response) => {
         if (response.ok) {
@@ -30,6 +32,13 @@ export const Votes = ({ streamerId }: VoteEntity) => {
       .catch((error) => {
         console.log(error);
       });
+    return () => {
+      try {
+        abortController.abort();
+      } catch (error) {
+        console.error("An error occurred while aborting the request:", error);
+      }
+    };
   }, [streamerId]);
 
   const handleLikeClick = () => {
