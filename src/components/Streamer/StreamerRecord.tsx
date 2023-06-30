@@ -21,7 +21,7 @@ export const StreamerRecord = () => {
                 setStreamer(streamerData);
             })
             .catch((error) => {
-                console.error('Error fetching streamer data:', error);
+                console.error('ErrorPage fetching streamer data:', error);
             });
 
         return () => {

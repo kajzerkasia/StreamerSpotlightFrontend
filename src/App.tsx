@@ -4,6 +4,7 @@ import './App.css';
 import {StreamerTable} from "./components/Streamer/StreamerTable";
 import {Votes} from "./components/Votes/Votes";
 import {StreamerRecord} from "./components/Streamer/StreamerRecord";
+import {ErrorPage} from "./components/ErrorPage/ErrorPage";
 
 export const App = () => (
     <Routes>
@@ -11,5 +12,6 @@ export const App = () => (
         <Route path="/streamers" element={<StreamerTable/>}/>
         <Route path="/streamer/:streamerId" element={<StreamerRecord/>}/>
         <Route path="/streamers/:streamerId/vote" element={<Votes/>}/>
+        <Route path="*" element={<ErrorPage/>}/>
     </Routes>
 );
