@@ -1,0 +1,55 @@
+.input_streamer_name,
+.input_streaming_platform,
+.textarea_streamer_description {
+  font-family: "Montserrat", sans-serif;
+  margin-top: 0.3rem;
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  width: 265px;
+  background-color: #e6e6fa;
+}
+
+.textarea_streamer_description {
+  min-height: 200px;
+  max-height: 200px;
+  width: 100%;
+  max-width: 500px;
+  min-width: 500px;
+  resize: none;
+}
+
+input:focus {
+  outline: transparent;
+}
+
+.td_streamer_name,
+.td_streaming_platform,
+.td_streamer_description {
+  width: 30%;
+}
+
+.center_text {
+  text-align: center;
+}
+
+.h2_streamer_name {
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.td_streamer_description button {
+  width: 120px;
+}
+
+.center_text label {
+  font-size: 14px;
+}
+
+.larger_font {
+  font-size: 18px;
+}
