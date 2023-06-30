@@ -3,7 +3,7 @@ import { StreamerEntity, Status } from "types";
 import { IconContext } from "react-icons";
 import { apiUrl } from "../../config/api";
 import { TbAlertTriangle, TbBroadcast } from "react-icons/tb";
-import { StreamerForm } from "./StreamerForm";
+import { StreamerForm } from "../StreamerForm/StreamerForm";
 import { Votes } from "../Votes/Votes";
 import { CustomModal } from "../CustomModal/CustomModal";
 import "./StreamerTable.css";
@@ -26,7 +26,9 @@ export const StreamerTable = () => {
     return () => {
       try {
         abortController.abort();
-      } catch {}
+      } catch (error) {
+        console.error("An error occurred while aborting the request:", error);
+      }
     };
   }, []);
 
