@@ -6,9 +6,15 @@ import { getPlatformIcon } from "../../utils/getPlatformIcon";
 import { Button } from "../Button/Button";
 import { CustomModal } from "../CustomModal/CustomModal";
 import { options } from "../../utils/options";
-import { confirmationText, text } from "../../utils/streamerFormTexts";
-import "./StreamerForm.css";
 import { validateForm } from "../../utils/validateForm";
+import {
+  descriptionField,
+  descriptionText,
+} from "../../utils/streamerDescriptionTexts";
+import { confirmationText, text } from "../../utils/streamerFormTexts";
+import { IconContext } from "react-icons";
+import { TbAlertTriangle } from "react-icons/tb";
+import "./StreamerForm.css";
 
 export type StreamerFormProps = {
   initialValues: StreamerEntity;
@@ -38,13 +44,19 @@ export const StreamerForm = ({
   const [touchedFields, setTouchedFields] = useState<Record<string, boolean>>(
     {}
   );
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
   useEffect(() => {
     const newErrors = validateForm(values, touchedFields, streamersList);
+
+    const filteredErrors = Object.values(newErrors).filter(
+      (error) => typeof error === "string"
+    ) as string[];
+
     setErrors(newErrors);
 
     const isValid =
-      Object.keys(newErrors).length === 0 &&
+      filteredErrors.length === 0 &&
       Object.values(values).every((value) => value !== "");
     setFormValid(isValid);
   }, [values, touchedFields, streamersList]);
@@ -81,6 +93,14 @@ export const StreamerForm = ({
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const openErrorModal = () => {
+    setIsErrorModalOpen(true);
+  };
+
+  const closeErrorModal = () => {
+    setIsErrorModalOpen(false);
   };
 
   const renderNameSection = () => {
@@ -163,11 +183,12 @@ export const StreamerForm = ({
           <div>
             <Button onClick={openModal}>Add description</Button>
             <CustomModal
+              className="custom_modal"
               isOpen={isModalOpen}
               onRequestClose={closeModal}
               onConfirm={closeModal}
               onCancel={closeModal}
-              text={text}
+              text={descriptionField}
               content={
                 <>
                   <textarea
@@ -190,7 +211,7 @@ export const StreamerForm = ({
                   )}
                 </>
               }
-              confirmationText={confirmationText}
+              confirmationText={descriptionText}
               error={isDescriptionTouched && errors.description}
             />
           </div>
@@ -212,13 +233,18 @@ export const StreamerForm = ({
           className={`button_add_streamer ${
             isFormValid &&
             Object.keys(touchedFields).length === Object.keys(values).length &&
-            !isModalOpen
-              ? "neon_animation"
-              : ""
+            !isModalOpen &&
+            "neon_animation"
           }`}
-          onClick={() =>
-            onSubmit && isFormValid ? onSubmit(values, reset) : ""
-          }
+          onClick={() => {
+            if (isFormValid) {
+              if (onSubmit) {
+                onSubmit(values, reset);
+              }
+            } else {
+              openErrorModal();
+            }
+          }}
         >
           Add streamer
         </Button>
@@ -247,6 +273,19 @@ export const StreamerForm = ({
           <p>Votes</p>
         </td>
       ) : null}
+      <CustomModal
+        className="custom_modal small_modal"
+        isOpen={isErrorModalOpen}
+        onRequestClose={closeErrorModal}
+        onConfirm={closeErrorModal}
+        text={text}
+        content={
+            <IconContext.Provider value={{ className: "icon_modal_alert" }}>
+              <TbAlertTriangle />
+            </IconContext.Provider>
+        }
+        confirmationText={confirmationText}
+      />
     </>
   );
 };
