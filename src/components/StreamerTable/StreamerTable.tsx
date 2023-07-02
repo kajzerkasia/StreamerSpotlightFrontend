@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react";
 import { StreamerEntity, Status } from "types";
 import { IconContext } from "react-icons";
 import { apiUrl } from "../../config/api";
-import { TbAlertTriangle, TbBroadcast } from "react-icons/tb";
+import { TbBroadcast } from "react-icons/tb";
 import { StreamerForm } from "../StreamerForm/StreamerForm";
 import { Votes } from "../Votes/Votes";
-import { CustomModal } from "../CustomModal/CustomModal";
 import "./StreamerTable.css";
-import { confirmationText, text } from "../../utils/streamerTableTexts";
 
 export const StreamerTable = () => {
   const [streamersList, setStreamersList] = useState<StreamerEntity[]>([]);
-  const [errorModalIsOpen, setErrorModalIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
     // const abortController = new AbortController();
@@ -32,23 +29,7 @@ export const StreamerTable = () => {
     // };
   }, []);
 
-  const closeModal = () => {
-    setErrorModalIsOpen(false);
-  };
-
   const addStreamer = async (values: StreamerEntity) => {
-
-    const isStreamerExist = streamersList.some((streamer) => streamer.name === values.name);
-    if (isStreamerExist) {
-      setErrorModalIsOpen(true);
-      return;
-    }
-
-    if (values.description && values.description.length > 1000) {
-      setErrorModalIsOpen(true);
-      return;
-    }
-
     const res = await fetch(`${apiUrl}/api/streamer/streamers`, {
       method: "POST",
       headers: {
@@ -99,12 +80,8 @@ export const StreamerTable = () => {
                   description: "",
                 }}
                 onSubmit={async (values, reset) => {
-                  if (values.name && values.platform && values.description) {
-                    await addStreamer(values);
-                    reset();
-                  } else {
-                    setErrorModalIsOpen(true);
-                  }
+                  await addStreamer(values);
+                  reset();
                 }}
                 actionType={Status.Add}
                 streamersList={streamersList}
@@ -127,19 +104,6 @@ export const StreamerTable = () => {
             ))}
           </tbody>
         </table>
-        <CustomModal
-          isOpen={errorModalIsOpen}
-          onRequestClose={closeModal}
-          onConfirm={closeModal}
-          onCancel={closeModal}
-          text={text}
-          content={
-            <IconContext.Provider value={{ className: "icon_modal_alert" }}>
-              <TbAlertTriangle />
-            </IconContext.Provider>
-          }
-          confirmationText={confirmationText}
-        />
       </div>
     </div>
   );
