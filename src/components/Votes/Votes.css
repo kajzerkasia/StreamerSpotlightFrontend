@@ -28,9 +28,27 @@
 .votes {
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
 }
 
 .votes svg {
   margin-right: 5px;
+}
+
+.votes_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.div_icon {
+  width: 25px;
+
+}
+
+.div_text {
+  width: 25px;
+}
+
+.votes_td {
+  text-align: center;
 }
