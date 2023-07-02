@@ -3,7 +3,8 @@ import { StreamerEntity } from "types";
 import { apiUrl } from "../../config/api";
 import { useParams } from "react-router-dom";
 import { Button } from "../Button/Button";
-import { BarLoader } from "react-spinners";
+import { MoonLoader
+} from "react-spinners";
 import "./StreamerRecord.css";
 import {TbBroadcast} from "react-icons/tb";
 import {IconContext} from "react-icons";
@@ -39,17 +40,16 @@ export const StreamerRecord = () => {
     };
   }, [streamerId]);
 
-  if (isLoading) {
+  if (isLoading || !streamer) {
     return (
       <div className="spinner_container">
-        <BarLoader color="#3d63cb" />
-        <div>Loading streamer data...</div>
+        <div className="div_loading">Loading streamer data...</div>
+        <MoonLoader
+          speedMultiplier={0.5}
+          color="#9fc3f870"
+        />
       </div>
     );
-  }
-
-  if (!streamer) {
-    return <div>Loading streamer data...</div>;
   }
 
   return (
