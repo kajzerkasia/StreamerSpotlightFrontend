@@ -25,10 +25,13 @@ input:focus {
   outline: transparent;
 }
 
-.td_streamer_name,
+.td_streamer_name {
+  width: 330px;
+}
+
 .td_streaming_platform,
 .td_streamer_description {
-  width: 330px;
+  width: 270px;
 }
 
 .center_text {
@@ -122,3 +125,4 @@ a {
   top: 61.5%;
   transform: translateY(-50%);
 }
+

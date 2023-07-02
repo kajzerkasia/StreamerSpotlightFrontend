@@ -8,6 +8,7 @@ import { CustomModal } from "../CustomModal/CustomModal";
 import { options } from "../../utils/options";
 import { confirmationText, text } from "../../utils/streamerFormTexts";
 import "./StreamerForm.css";
+import { validateForm } from "../../utils/validateForm";
 
 export type StreamerFormProps = {
   initialValues: StreamerEntity;
@@ -39,8 +40,14 @@ export const StreamerForm = ({
   );
 
   useEffect(() => {
-    validateForm();
-  }, [values]);
+    const newErrors = validateForm(values, touchedFields, streamersList);
+    setErrors(newErrors);
+
+    const isValid =
+      Object.keys(newErrors).length === 0 &&
+      Object.values(values).every((value) => value !== "");
+    setFormValid(isValid);
+  }, [values, touchedFields, streamersList]);
 
   const onItemClick = (option: Option) => {
     setSelectedOption(option);
@@ -74,49 +81,6 @@ export const StreamerForm = ({
 
   const closeModal = () => {
     setIsModalOpen(false);
-  };
-
-  const validateForm = () => {
-    const { name, platform, description } = values;
-    const newErrors: Partial<StreamerEntity> = {};
-
-    if (touchedFields["name"] && (name.length < 3 && name.length > 0)) {
-      newErrors.name = "Name must be at least 3 characters long";
-    }
-
-    if (touchedFields["platform"] && !platform) {
-      newErrors.platform = "Please select a platform";
-    }
-
-    if (
-      touchedFields["description"] &&
-      (description.length < 10 && description.length > 0)
-    ) {
-      newErrors.description =
-        "Description must be at least 10 characters long";
-    }
-
-    if (
-      touchedFields["description"] &&
-      (description.length > 1000)
-    ) {
-      newErrors.description =
-        "Description must be less than 1000 characters";
-    }
-
-    const isStreamerExist = streamersList.some(
-      (streamer) => streamer.name === name
-    );
-    if (isStreamerExist) {
-      newErrors.name = "Streamer with this name already exists";
-    }
-
-    setErrors(newErrors);
-
-    const isValid =
-      Object.keys(newErrors).length === 0 &&
-      Object.values(values).every((value) => value !== "");
-    setFormValid(isValid);
   };
 
   const renderNameSection = () => {
@@ -206,21 +170,23 @@ export const StreamerForm = ({
               text={text}
               content={
                 <>
-                <textarea
-                  placeholder="Please provide some information about this streamer"
-                  className={`textarea_streamer_description ${
-                    isDescriptionTouched && !values.description ? "error" : ""
-                  }`}
-                  name="description"
-                  id="description"
-                  required
-                  value={values.description}
-                  onChange={(event) =>
-                    handleChange("description", event.target.value)
-                  }
-                />
+                  <textarea
+                    placeholder="Please provide some information about this streamer"
+                    className={`textarea_streamer_description ${
+                      isDescriptionTouched && !values.description ? "error" : ""
+                    }`}
+                    name="description"
+                    id="description"
+                    required
+                    value={values.description}
+                    onChange={(event) =>
+                      handleChange("description", event.target.value)
+                    }
+                  />
                   {isDescriptionTouched && !values.description && (
-                    <div className="error-message-description">Description is required</div>
+                    <div className="error-message-description">
+                      Description is required
+                    </div>
                   )}
                 </>
               }
@@ -244,11 +210,15 @@ export const StreamerForm = ({
       return (
         <Button
           className={`button_add_streamer ${
-            isFormValid && Object.keys(touchedFields).length === Object.keys(values).length && !isModalOpen
+            isFormValid &&
+            Object.keys(touchedFields).length === Object.keys(values).length &&
+            !isModalOpen
               ? "neon_animation"
               : ""
           }`}
-          onClick={() => (onSubmit && isFormValid ? onSubmit(values, reset) : "")}
+          onClick={() =>
+            onSubmit && isFormValid ? onSubmit(values, reset) : ""
+          }
         >
           Add streamer
         </Button>
@@ -269,8 +239,14 @@ export const StreamerForm = ({
       <td className="td_streamer_description center_text" colSpan={1}>
         {renderDescriptionSection()}
       </td>
-      <td className="div_last_td_container" colSpan={1}>{renderActionButton()}</td>
-      {actionType === Status.Add ? <td className="additional_td"><p>Votes</p></td> : null}
+      <td className="div_last_td_container" colSpan={1}>
+        {renderActionButton()}
+      </td>
+      {actionType === Status.Add ? (
+        <td className="additional_td">
+          <p>Votes</p>
+        </td>
+      ) : null}
     </>
   );
 };
