@@ -90,12 +90,12 @@ export const Votes = ({ streamerId }: VoteEntity) => {
   return (
     <div className="div_votes_container">
       <IconContext.Provider value={{ className: "react_icon_like" }}>
-        <p>
+        <p className="votes">
           <BiSolidLike onClick={handleLikeClick} /> {likes}
         </p>
       </IconContext.Provider>
       <IconContext.Provider value={{ className: "react_icon_dislike" }}>
-        <p>
+        <p className="votes">
           <BiSolidDislike onClick={handleDislikeClick} /> {dislikes}
         </p>
       </IconContext.Provider>

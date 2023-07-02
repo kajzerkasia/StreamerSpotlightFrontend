@@ -13,6 +13,7 @@ export type CustomModalProps = {
   text?: string;
   confirmationText?: string;
   content?: React.ReactNode;
+  error?: React.ReactNode;
 };
 
 export const CustomModal = ({
@@ -22,18 +23,22 @@ export const CustomModal = ({
   text,
   content,
   confirmationText,
+  error,
 }: CustomModalProps) => {
+  const modalClassName = `custom_modal ${error ? 'modal_error-active' : ''}`;
+
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      className="custom_modal"
+      className={modalClassName}
       contentLabel="Custom Modal"
       closeTimeoutMS={1200}
       style={{ overlay: { background: "#292a2bbf" } }}
     >
       <h2>{text}</h2>
       <div className="modal_content">{content}</div>
+      {error && <div className="modal_error">{error}</div>}
       <div className="modal_button">
         <Button onClick={onConfirm}>{confirmationText}</Button>
       </div>
