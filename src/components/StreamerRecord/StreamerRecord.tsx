@@ -3,11 +3,10 @@ import { StreamerEntity } from "types";
 import { apiUrl } from "../../config/api";
 import { useParams } from "react-router-dom";
 import { Button } from "../Button/Button";
-import { MoonLoader
-} from "react-spinners";
+import { MoonLoader } from "react-spinners";
 import "./StreamerRecord.css";
-import {TbBroadcast} from "react-icons/tb";
-import {IconContext} from "react-icons";
+import { TbBroadcast } from "react-icons/tb";
+import { IconContext } from "react-icons";
 
 export const StreamerRecord = () => {
   const [streamer, setStreamer] = useState<StreamerEntity | null>(null);
@@ -44,10 +43,7 @@ export const StreamerRecord = () => {
     return (
       <div className="spinner_container">
         <div className="div_loading">Loading streamer data...</div>
-        <MoonLoader
-          speedMultiplier={0.5}
-          color="#9fc3f870"
-        />
+        <MoonLoader speedMultiplier={0.5} color="#9fc3f870" />
       </div>
     );
   }
@@ -63,9 +59,9 @@ export const StreamerRecord = () => {
       <div className="streamer_record_container">
         <div className="streamer_info">
           <img
-              className="streamer_img"
-              src={require("../../assets/streamer_img.jpg")}
-              alt="Streamer"
+            className="streamer_img"
+            src={require("../../assets/streamer_img.jpg")}
+            alt="Streamer"
           />
           <div className="description">{streamer.description}</div>
         </div>
