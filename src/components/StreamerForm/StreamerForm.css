@@ -19,17 +19,19 @@
   max-width: 500px;
   min-width: 500px;
   resize: none;
-  margin-bottom: 5px;
 }
 
 input:focus {
   outline: transparent;
 }
 
-.td_streamer_name,
+.td_streamer_name {
+  width: 330px;
+}
+
 .td_streaming_platform,
 .td_streamer_description {
-  width: 320px;
+  width: 270px;
 }
 
 .center_text {
@@ -67,7 +69,7 @@ a {
   justify-content: space-between;
   align-items: center;
   height: 80px;
-  width: 190px;
+  width: 160px;
 }
 
 .additional_td {
@@ -80,3 +82,47 @@ a {
 .button_add_streamer {
   margin-top: -5px;
 }
+
+.input_wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input_streamer_name {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  margin-top: 0.3rem;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #e6e6fa;
+}
+
+.input_streamer_name:focus {
+  outline: transparent;
+}
+
+.error-message {
+  color: #d15a5a;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.error-message-description {
+  color: #d15a5a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: absolute;
+  top: 61.5%;
+  transform: translateY(-50%);
+}
+
