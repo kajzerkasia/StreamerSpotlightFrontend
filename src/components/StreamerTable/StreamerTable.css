@@ -4,7 +4,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.div_streamers_table_container {
   width: 100%;
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
 }
 
 .main_h1_streamers {
@@ -16,20 +23,26 @@
   margin-bottom: 20px;
 }
 
-.div_streamers_table_container {
-  width: 60%;
-}
-
 .react_icon_logo {
   vertical-align: -4px;
   margin-right: 5px;
 }
 
 .streamers_table {
-  border-collapse: collapse;
+  width: 100%;
+  max-width: 1150px;
 }
 
 .icon_modal_alert {
   margin: 0 auto;
   font-size: 70px;
+}
+
+.div_streamer_input_group {
+  height: 155px;
+  vertical-align: top;
+}
+
+.div_streamer_input_group td {
+  padding-top: 25px;
 }

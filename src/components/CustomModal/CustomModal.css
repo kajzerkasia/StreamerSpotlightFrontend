@@ -7,6 +7,7 @@
   margin: 23vh auto 2vh;
   padding: 60px 50px;
   width: 600px;
+  height: 500px;
   background-image: linear-gradient(200deg, #3e3e9c, #6b32ac);
   font-size: 16px;
   border-radius: 5px;
@@ -14,7 +15,7 @@
 
 .custom_modal button {
   font-family: "Ubuntu", sans-serif;
-  margin-top: 5vh;
+  margin-top: 10px;
   font-size: 14px;
   width: 30%;
 }
@@ -22,6 +23,25 @@
 .custom_modal h2 {
   margin-bottom: 5vh;
   font-size: 16px;
+  height: 20px;
+}
+
+.modal_error {
+  height: 20px;
+  color: #d15a5a;
+}
+
+.modal_content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 300px;
+}
+
+.modal_button {
+  margin-top: 20px;
 }
 
 .ReactModal__Overlay {

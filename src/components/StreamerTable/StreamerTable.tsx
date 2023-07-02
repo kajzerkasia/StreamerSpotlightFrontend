@@ -107,6 +107,7 @@ export const StreamerTable = () => {
                   }
                 }}
                 actionType={Status.Add}
+                streamersList={streamersList}
               />
             </tr>
             {streamersList.map((streamer) => (
@@ -120,6 +121,7 @@ export const StreamerTable = () => {
                   actionType={Status.Save}
                   streamerId={streamer.id}
                   votes={<Votes streamerId={streamer.id} />}
+                  streamersList={streamersList}
                 />
               </tr>
             ))}
