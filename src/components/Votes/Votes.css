@@ -24,3 +24,13 @@
 .react_icon_dislike {
   cursor: pointer;
 }
+
+.votes {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.votes svg {
+  margin-right: 5px;
+}
