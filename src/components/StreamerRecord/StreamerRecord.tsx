@@ -68,14 +68,13 @@ export const StreamerRecord = () => {
               alt="Streamer"
           />
           <div className="description">{streamer.description}</div>
-          <div className="streamer_name">{streamer.name}</div>
         </div>
         <div className="streamer_details">
           <table className="one_streamer_table">
             <tbody>
               <tr>
                 <th>Name:</th>
-                <td>{streamer.name}</td>
+                <td className="streamer_name">{streamer.name}</td>
               </tr>
               <tr>
                 <th>Platform:</th>
