@@ -14,22 +14,22 @@ export const StreamerTable = () => {
   const [errorModalIsOpen, setErrorModalIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    const abortController = new AbortController();
+    // const abortController = new AbortController();
     fetch(`${apiUrl}/api/streamer/streamers`, {
       method: "GET",
-      signal: abortController.signal,
+      // signal: abortController.signal,
     })
       .then((res) => res.json())
       .then((streamers) => {
         setStreamersList(streamers);
       });
-    return () => {
-      try {
-        abortController.abort();
-      } catch (error) {
-        console.error("An error occurred while aborting the request:", error);
-      }
-    };
+    // return () => {
+    //   try {
+    //     abortController.abort();
+    //   } catch (error) {
+    //     console.error("An error occurred while aborting the request:", error);
+    //   }
+    // };
   }, []);
 
   const closeModal = () => {
@@ -37,6 +37,18 @@ export const StreamerTable = () => {
   };
 
   const addStreamer = async (values: StreamerEntity) => {
+
+    const isStreamerExist = streamersList.some((streamer) => streamer.name === values.name);
+    if (isStreamerExist) {
+      setErrorModalIsOpen(true);
+      return;
+    }
+
+    if (values.description && values.description.length > 1000) {
+      setErrorModalIsOpen(true);
+      return;
+    }
+
     const res = await fetch(`${apiUrl}/api/streamer/streamers`, {
       method: "POST",
       headers: {

@@ -5,10 +5,12 @@ import { useParams } from "react-router-dom";
 import { Button } from "../Button/Button";
 import { BarLoader } from "react-spinners";
 import "./StreamerRecord.css";
+import {TbBroadcast} from "react-icons/tb";
+import {IconContext} from "react-icons";
 
 export const StreamerRecord = () => {
   const [streamer, setStreamer] = useState<StreamerEntity | null>(null);
-  const [isLoading, setIsLoading] = useState(true); // Dodajemy stan dla ładowania
+  const [isLoading, setIsLoading] = useState(true);
 
   const { streamerId } = useParams();
 
@@ -52,6 +54,12 @@ export const StreamerRecord = () => {
 
   return (
     <div className="div_streamer_record">
+      <IconContext.Provider value={{ className: "react_icon_logo" }}>
+        <h1 className="main_h1_streamers">
+          <TbBroadcast />
+          Streamer Spotlight App
+        </h1>
+      </IconContext.Provider>
       <div className="streamer_record_container">
         <div className="streamer_info">
           <img
