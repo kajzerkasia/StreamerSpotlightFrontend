@@ -15,5 +15,3 @@ export const App = () => (
     <Route path="*" element={<ErrorPage />} />
   </Routes>
 );
-
-//@TODO: Responsiveness - CSS - smaller screens
