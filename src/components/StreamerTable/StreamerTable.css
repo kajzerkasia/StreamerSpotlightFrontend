@@ -40,6 +40,7 @@
 
 .div_streamer_input_group {
   height: 155px;
+  min-height: 155px;
   vertical-align: top;
 }
 

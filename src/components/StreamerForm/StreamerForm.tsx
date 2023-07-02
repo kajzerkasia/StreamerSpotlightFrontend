@@ -129,22 +129,24 @@ export const StreamerForm = ({
           <label htmlFor="name">
             Enter the streamer's name on the specified streaming platform
           </label>
-          <input
-            placeholder="What is the name of the streamer?"
-            className={`input_streamer_name ${
-              isNameTouched && !values.name ? "error" : ""
-            }`}
-            type="text"
-            id="name"
-            name="name"
-            required
-            value={values.name}
-            onChange={(event) => handleChange("name", event.target.value)}
-          />
-          {isNameTouched && !values.name && (
-            <div className="error-message">Name is required</div>
-          )}
-          {errors.name && <div className="error-message">{errors.name}</div>}
+          <div className="input_wrapper">
+            <input
+              placeholder="What is the name of the streamer?"
+              className={`input_streamer_name ${
+                isNameTouched && !values.name ? "error" : ""
+              }`}
+              type="text"
+              id="name"
+              name="name"
+              required
+              value={values.name}
+              onChange={(event) => handleChange("name", event.target.value)}
+            />
+            {isNameTouched && !values.name && (
+              <div className="error-message">Name is required</div>
+            )}
+            {errors.name && <div className="error-message">{errors.name}</div>}
+          </div>
         </>
       );
     } else {
@@ -218,7 +220,7 @@ export const StreamerForm = ({
                   }
                 />
                   {isDescriptionTouched && !values.description && (
-                    <div className="error-message">Description is required</div>
+                    <div className="error-message-description">Description is required</div>
                   )}
                 </>
               }
