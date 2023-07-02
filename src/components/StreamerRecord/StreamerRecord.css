@@ -8,7 +8,6 @@ a {
   flex-direction: column;
   align-items: center;
   margin-top: 100px;
-  /*padding: 20px;*/
 }
 
 .streamer_record_container {
@@ -16,7 +15,12 @@ a {
   background-image: linear-gradient(200deg, #3d63cb, #6b32ac);
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+  padding: 30px;
+}
+
+.streamer_info {
+  display: flex;
+  align-items: center;
 }
 
 .streamer_info img {
@@ -29,7 +33,7 @@ a {
 
 .streamer_info .description {
   flex: 1;
-  max-width: 400px;
+  max-width: 600px;
   overflow: hidden;
   word-wrap: break-word;
   color: #e6e6fa;
@@ -69,11 +73,5 @@ a {
 }
 
 .streamer_name {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  color: #e6e6fa;
-  font-size: 18px;
   font-weight: bold;
 }
-
