@@ -6,6 +6,7 @@
   margin: 0.3rem auto;
   width: 120px;
   font-size: 14px;
+  cursor: pointer;
 }
 
 .dropdown_input {
