@@ -49,9 +49,9 @@
    npm i
  ```
 3. Run the application:
-
-package.json -> scripts -> "start": "react-app-rewired start",
-
+ ```
+   package.json -> scripts -> "start": "react-app-rewired start",
+ ```
 ## How to reach me
 
 [<img src="https://img.shields.io/badge/linked%20in-%23404d59.svg?logo=linkedin&style=for-the-badge&logoColor=blue" alt="linked in" />](https://www.linkedin.com/in/katarzyna-kajzer/)
