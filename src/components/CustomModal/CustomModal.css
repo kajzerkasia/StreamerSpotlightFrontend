@@ -13,6 +13,12 @@
   border-radius: 5px;
 }
 
+.small_modal {
+  width: 600px;
+  height: 300px;
+  color: #d15a5a;
+}
+
 .custom_modal button {
   font-family: "Ubuntu", sans-serif;
   margin-top: 10px;

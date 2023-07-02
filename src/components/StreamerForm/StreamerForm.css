@@ -126,3 +126,17 @@ a {
   transform: translateY(-50%);
 }
 
+.error-message-modal {
+  color: #d15a5a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: absolute;
+  top: 51.5%;
+  transform: translateY(-50%);
+}
+ .icon_modal_alert {
+   color: #d15a5a;
+ }
+
