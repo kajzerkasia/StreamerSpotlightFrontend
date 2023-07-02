@@ -27,7 +27,6 @@ export const CustomModal = ({
   error,
   className,
 }: CustomModalProps) => {
-
   return (
     <Modal
       isOpen={isOpen}
